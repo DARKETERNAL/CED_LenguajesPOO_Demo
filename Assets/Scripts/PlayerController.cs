@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
+    //cambio de player controller
     private Rigidbody myRigidbody;
 
     public float jumpForce;
