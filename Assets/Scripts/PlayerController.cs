@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 collision.contacts[0].point,
                 Quaternion.identity);
 
-            Destroy(psInstance.gameObject, 0.6F);
+            //Destroy(psInstance.gameObject, 0.6F);
         }
     }
 }
