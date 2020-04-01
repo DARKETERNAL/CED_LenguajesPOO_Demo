@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void ResetCanJump()
     {
-        canJump = !canJump;
+        canJump = false;
     }
 
     private void OnCollisionEnter(Collision collision)
