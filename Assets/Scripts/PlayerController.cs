@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Si el objeto que toca es el suelo, reproduzca efectos de partícula de caída.
         if (collision.gameObject.layer.Equals(
             LayerMask.NameToLayer("Ground")))
         {
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
                 playFallPS = true;
             }
         }
-        // Si el objeto que toca es el cubo, reproduzca efectos de golpe.
         else if (collision.gameObject.layer.Equals(
             LayerMask.NameToLayer("JumpCounter")))
         {
