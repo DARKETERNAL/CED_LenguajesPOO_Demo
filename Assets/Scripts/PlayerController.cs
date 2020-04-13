@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ParticleSystem hitParticleSystem;
 
+    [SerializeField]
+    private AudioSource hitSFX, jumpSFX;
+
     private int jumpCount;
 
     private bool playFallPS;
@@ -37,6 +40,11 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
+            if (jumpSFX != null)
+            {
+                jumpSFX.Play();
+            }
+
             jumpCount += 1;
             canJump = false;
             myRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
@@ -62,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void ResetCanJump()
     {
-        canJump = false;
+        canJump = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -77,13 +85,13 @@ public class PlayerController : MonoBehaviour
                 {
                     fallParticleSystem.Play();
                 }
-
-                ResetCanJump();
             }
             else
             {
                 playFallPS = true;
             }
+
+            ResetCanJump();
         }
         // Si el objeto que toca es el cubo, reproduzca efectos de golpe.
         else if (collision.gameObject.layer.Equals(
@@ -94,7 +102,12 @@ public class PlayerController : MonoBehaviour
                 collision.contacts[0].point,
                 Quaternion.identity);
 
-            //Destroy(psInstance.gameObject, 0.6F);
+            if (hitSFX != null)
+            {
+                hitSFX.Play();
+            }
+
+            Destroy(psInstance.gameObject, 0.6F);
         }
     }
 }
